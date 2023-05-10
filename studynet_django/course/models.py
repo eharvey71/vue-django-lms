@@ -75,6 +75,12 @@ class Lesson(models.Model):
     lesson_type = models.CharField(max_length=20, choices=CHOICES_LESSON_TYPE, default=ARTICLE)
     youtube_id = models.CharField(max_length=20, blank=True, null=True)
 
+    class Meta:
+        verbose_name_plural = 'Lessons'
+
+    def __str__(self):
+        return self.title
+
 class Comment(models.Model):
     course = models.ForeignKey(Course, related_name='comments', on_delete=models.CASCADE)
     lesson = models.ForeignKey(Lesson, related_name='comments', on_delete=models.CASCADE)
@@ -82,6 +88,9 @@ class Comment(models.Model):
     content = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     created_by = models.ForeignKey(User, related_name='comments', on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.name
 
 class Quiz(models.Model):
     lesson = models.ForeignKey(Lesson, related_name='quizzes', on_delete=models.CASCADE)
@@ -93,3 +102,6 @@ class Quiz(models.Model):
 
     class Meta:
         verbose_name_plural = 'Quizzes'
+    
+    def __str__(self):
+        return self.question

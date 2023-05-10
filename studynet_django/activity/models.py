@@ -20,3 +20,10 @@ class Activity(models.Model):
     status = models.CharField(max_length=10, choices=STATUS_CHOICES, default=STARTED)
     created_by = models.ForeignKey(User, related_name='activities', on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name_plural = 'Activities'
+
+    #def __str__(self):
+    #    activity_name = str(self.created_by) + ": " + str(self.course) + ": " + str(self.lesson) + ": " + str(self.status)
+    #    return activity_name

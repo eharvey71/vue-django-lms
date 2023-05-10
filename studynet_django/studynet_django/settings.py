@@ -59,7 +59,7 @@ INSTALLED_APPS = [
 ]
 
 CORS_ALLOWED_ORIGINS = [
-    'http://localhost:8082',
+    'http://localhost:8080',
 ]
 
 MIDDLEWARE = [
@@ -97,13 +97,23 @@ WSGI_APPLICATION = 'studynet_django.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+#DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.db.backends.sqlite3',
+#        'NAME': BASE_DIR / 'db.sqlite3',
+#    }
+#}
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": "lmsdb", 
+        "USER": "postgres", 
+        "PASSWORD": "M3r1d1aN2", 
+        "HOST": "127.0.0.1",
+        "PORT": "5432",
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
