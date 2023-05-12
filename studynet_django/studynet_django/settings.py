@@ -9,8 +9,11 @@ https://docs.djangoproject.com/en/4.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
-
+import os
 from pathlib import Path
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,15 +23,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-t$n*vaoa!yh#%9(kfna5glby5a01_z*w^@+b(bg6o_zc^up&o#'
+SECRET_KEY = os.environ.get('SECRET_KEY', '')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get('DEBUG', False)
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['207.154.213.45']
 
-WEBSITE_URL = 'http://127.0.0.1:8000'
-
+WEBSITE_URL = 'http://207.154.213.45'
 # CORS_ALLOW_HEADERS = ['authorization',]
 
 REST_FRAMEWORK = {
@@ -59,8 +61,12 @@ INSTALLED_APPS = [
 ]
 
 CORS_ALLOWED_ORIGINS = [
-    'http://localhost:8080',
+    'http://207.154.213.45',
+    'http://localhost',
+    'http://127.0.0.1',
 ]
+
+CORS_ORIGIN_ALLOW_ALL = True
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -97,24 +103,24 @@ WSGI_APPLICATION = 'studynet_django.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-#DATABASES = {
-#    'default': {
-#        'ENGINE': 'django.db.backends.sqlite3',
-#        'NAME': BASE_DIR / 'db.sqlite3',
-#    }
-#}
-
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": "lmsdb", 
-        "USER": "postgres",
-        "PASSWORD": "M3r1d1aN2", 
-        #"PASSWORD": "Supercalifragilistic", 
-        "HOST": "127.0.0.1",
-        "PORT": "5432",
+if bool(os.environ.get('DEBUG', False)):
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.postgresql",
+            "NAME": os.environ.get('DATABASE_NAME'), 
+            "USER": os.environ.get('DATABASE_USER'),
+            "PASSWORD": os.environ.get('DATABASE_PASSWORD'), 
+            "HOST": "localhost",
+            "PORT": "",
+        }
     }
-}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -153,6 +159,7 @@ USE_TZ = True
 STATIC_URL = 'static/'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media/'
+STATIC_ROOT = BASE_DIR / 'static/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
