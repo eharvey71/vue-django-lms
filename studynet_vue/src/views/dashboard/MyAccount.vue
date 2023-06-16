@@ -1,6 +1,6 @@
 <template>
     <div class="about">
-      <div class="hero is-info">
+      <div class="hero is-primary">
         <div class="hero-body has-text-centered">
           <h1 class="title">My Account</h1>
         </div>

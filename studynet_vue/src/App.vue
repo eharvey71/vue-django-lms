@@ -34,6 +34,6 @@
   }
   </script>
   
-  <style lang="scss">
+ <!--  <style lang="scss">
   @import '../node_modules/bulma';
-  </style>
+  </style> -->

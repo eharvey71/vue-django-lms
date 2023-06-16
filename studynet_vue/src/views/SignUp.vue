@@ -1,6 +1,6 @@
 <template>
     <div class="signup">
-      <div class="hero is-info">
+      <div class="hero is-primary">
         <div class="hero-body has-text-centered">
           <h1 class="title">Sign up</h1>
         </div>
@@ -71,7 +71,7 @@
           }
       },
       mounted() {
-          document.title = 'Sign up | StudyNet'
+          document.title = 'Sign up | MicroMastery'
       },
       methods: {
           submitForm() {

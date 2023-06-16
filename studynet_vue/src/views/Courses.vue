@@ -1,6 +1,6 @@
 <template>
     <div class="courses">
-        <div class="hero is-info">
+        <div class="hero is-primary">
             <div class="hero-body has-text-centered">
                 <h1 class="title">Courses</h1>
             </div>
@@ -76,7 +76,7 @@ export default {
     async mounted() {
         console.log('mounted')
 
-        document.title = 'Courses | StudyNet'
+        document.title = 'Courses | MicroMastery'
 
         await axios
             .get('courses/get_categories/')

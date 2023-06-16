@@ -1,6 +1,6 @@
 <template>
   <div class="about">
-    <div class="hero is-info">
+    <div class="hero is-primary">
       <div class="hero-body has-text-centered">
         <h1 class="title">About</h1>
       </div>
@@ -15,7 +15,7 @@
 <script>
 export default {
   mounted() {
-    document.title = 'About | StudyNet'
+    document.title = 'About | MicroMastery'
   }
 }
 </script>

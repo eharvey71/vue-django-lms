@@ -160,4 +160,4 @@ cython_debug/
 #.idea/
 
 #remove node packages
-/studynet_vue/node_modules
+node_modules/

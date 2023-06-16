@@ -1,0 +1,18 @@
+// customizations
+$brown-orange: #c05517;
+$greenish: #116466;
+$darkish: #062027;
+$verylightgreen: #9cc7bc;
+
+//$box-background:  #cde7e8;
+$link: $greenish;
+$info: $darkish;
+$primary: $brown-orange;
+
+// Bulma Import
+@import '~bulma';
+.box {
+    //background-color: $box-background;
+    padding: 1.25rem;
+    box-shadow: 0 0 6px 0 #38260c;
+}

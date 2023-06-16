@@ -1,6 +1,7 @@
 <template>
     <form v-on:submit.prevent="submitComment()">
         <div class="field">
+            <p><strong>Add a Comment for Discussion</strong></p>
             <label class="label">Name</label>
             <div class="control">
                 <input type="text" class="input" v-model="comment.name">

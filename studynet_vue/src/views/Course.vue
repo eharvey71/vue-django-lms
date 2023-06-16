@@ -1,6 +1,6 @@
 <template>
     <div class="courses">
-        <div class="hero is-info">
+        <div class="hero is-primary">
             <div class="hero-body has-text-centered">
                 <h1 class="title">{{ course.title }}</h1>
 
@@ -39,7 +39,8 @@
 
                                 <hr>
                                 
-                                {{ activeLesson.long_description }}
+                                <!-- {{ activeLesson.long_description }} -->
+                                <span v-html="activeLesson.long_description"></span>
 
                                 <hr>
 
@@ -71,7 +72,8 @@
                             </template>
 
                             <template v-else>
-                                {{ course.long_description }}
+                                <span v-html="course.long_description"></span>
+                                <!-- {{ course.long_description }} -->
                             </template>
                         </template>
 
@@ -131,7 +133,7 @@ export default {
                 this.lessons = response.data.lessons
             })
         
-        document.title = this.course.title + ' | StudyNet'
+        document.title = this.course.title + ' | MicroMastery'
     },
     methods: {
         submitComment(comment) {

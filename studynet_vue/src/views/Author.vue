@@ -1,6 +1,6 @@
 <template>
     <div class="courses">
-        <div class="hero is-info">
+        <div class="hero is-primary">
             <div class="hero-body has-text-centered">
                 <h1 class="title">{{ created_by.first_name + ' ' + created_by.last_name }}</h1>
             </div>
