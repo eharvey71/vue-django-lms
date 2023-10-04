@@ -9,7 +9,7 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view, authentication_classes, permission_classes
 
 from .models import Course, Lesson, Comment, Category
-from .serializers import CourseListSerializer, CourseDetailSerializer, LessonListSerializer, CommentsSerializer, CategorySerializer, QuizSerializer, UserSerializer
+from .serializers import CourseListSerializer, CourseDetailSerializer, LessonListSerializer, LessonDetailSerializer, CommentsSerializer, CategorySerializer, QuizSerializer, UserSerializer
 
 @api_view(['POST'])
 def create_course(request):
@@ -88,16 +88,25 @@ def get_frontpage_courses(request):
 def get_course(request, slug):
     course = Course.objects.filter(status=Course.PUBLISHED).get(slug=slug)
     course_serializer = CourseDetailSerializer(course)
-    lesson_serializer = LessonListSerializer(course.lessons.all(), many=True)
+    lesson_serializer = LessonDetailSerializer(course.lessons.all(), many=True)
+    lesson_list_serializer = LessonListSerializer(course.lessons.all(), many=True)
 
+    #print(request.data)
+    # We are using IsAuthenticatedOrReadonly default permissions
+    # Need to make sure that ALL lesson info isn't sent in the anon user
+    # payload, just course info and the lesson sidebar list
     if request.user.is_authenticated:
         course_data = course_serializer.data
+        lesson_data = lesson_serializer.data
+    elif request.user.is_anonymous:
+        course_data = course_serializer.data
+        lesson_data = lesson_list_serializer.data
     else:
         course_data = {}
 
     return Response({
         'course': course_data,
-        'lessons': lesson_serializer.data
+        'lessons': lesson_data
     })
 
 @api_view(['GET'])

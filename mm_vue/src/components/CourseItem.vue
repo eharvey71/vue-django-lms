@@ -14,9 +14,11 @@
         </div>
 
         <div class="content">
-            <p>{{ course.short_description }}</p>
+            <span v-html="course.short_description"></span>
 
-            <router-link :to="{'name': 'Course', params: {slug: course.slug}}">More</router-link>
+            <router-link :to="{'name': 'Course', params: {slug: course.slug}}">
+                <p><br /><button class="button is-primary">More</button></p>
+            </router-link>
         </div>
     </div>
 </div>
