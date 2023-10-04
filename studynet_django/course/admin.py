@@ -12,6 +12,9 @@ class LessonAdmin(admin.ModelAdmin):
     search_fields = ['title', 'short_description', 'long_description']
     inlines = [LessonCommentInline]
 
+admin.site.site_title = "MicroMastery Administration"
+admin.site.index_title = "Welcome to the MicroMastery Admin Portal"
+admin.site.site_header = "MicroMastery Administration"
 
 admin.site.register(Category)
 admin.site.register(Course)
